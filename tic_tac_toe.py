@@ -1,21 +1,6 @@
-import random
 from colorama import Fore
-"""
-    The code defines a Tic-Tac-Toe game where two players take turns to place their marks on a 3x3
-    board, with the game ending when a player wins, or it's a tie.
-    
-    :param board: The `board` parameter is a 3x3 grid representing the Tic-Tac-Toe board. Each cell in
-    the grid can contain either 'O', 'X', or ' ' (empty)
-"""
+
 def display_board(board):
-    """
-    The function `display_board` prints out the contents of a 2D list representing a game board in a
-    visually formatted manner.
-    
-    :param board: The `display_board` function takes a 2D list called `board` as a parameter. This list
-    represents the game board, where each element in the list corresponds to a cell on the board. The
-    function iterates over the rows and cells in the board and prints out the contents of each
-    """
     for row in board:
         for cell in row:
             print(f"{cell} |",end=" ") 
@@ -68,12 +53,8 @@ def main():
         print(Fore.YELLOW + f"\nTurn for player {player_no}\n" + Fore.RESET)
     
         while True :
-            if player == 'X':
-                row = random.randint(1,3)
-                col = random.randint(1,3)
-            else :
-                row = int(input("Enter the row:- "))
-                col = int(input('Enter the column:- '))
+            row = int(input("Enter the row:- "))
+            col = int(input('Enter the column:- '))
 
             row = row - 1
             col = col - 1
