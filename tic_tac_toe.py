@@ -1,4 +1,5 @@
 from colorama import Fore
+import random
 
 def display_board(board):
     for row in board:
@@ -20,24 +21,13 @@ def is_board_full(board):
     return True
     
 def is_winer(board,player):
-    # Check rows
-    for row in board:
-        if all(cell == player for cell in row):
-            return True
-        
-    #Check cols
-    for col in range(len(board[0])):
-        if all(board[col][row] == player for row in range(len(board))):
-            return True
-        
-    if all(board[row][row] == player for row in range(0,3)):
-        return True
-    
-    if all(board[row][2-row] == player for row in range(0,3)):
-        return True
+    winer_serial = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]],[[0,0],[1,0],[2,0]],[[0,1],[1,1],[2,1]],[[0,2],[1,2],[2,2]],[[0,0],[1,1],[2,2]],[[2,0],[1,1],[0,2]]]
 
+    for i in winer_serial:
+        if all(board[x][y] == player for x,y in i):
+            return True
     return False
-
+    
 def main():  
     board = [[' ' for _ in range(3) ] for _ in range(3)]
     print("Game Start now :-")
@@ -53,11 +43,16 @@ def main():
         print(Fore.YELLOW + f"\nTurn for player {player_no}\n" + Fore.RESET)
     
         while True :
-            row = int(input("Enter the row:- "))
-            col = int(input('Enter the column:- '))
+            if player_no == 2:
+                row = random.randint(0,2)
+                col = random.randint(0,2)
+            
+            else :
+                row = int(input("Enter the row:- "))
+                col = int(input('Enter the column:- '))
 
-            row = row - 1
-            col = col - 1
+                row = row - 1
+                col = col - 1
 
             if is_vaild_move(board,row,col):
                 place_move(board,row,col,player)
